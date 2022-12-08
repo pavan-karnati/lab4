@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgres://watchlist_user:password@db:5432/watchlists
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=watchlists
+      - POSTGRES_USER=watchlist_user
+      - POSTGRES_PASSWORD=password
+
+
+
